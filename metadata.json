@@ -1,0 +1,7 @@
+{
+  "name": "Global Stream",
+  "description": "Real-time WhatsApp-style messaging app with chats, status stories, global video stream with TikTok-style double tap to like, voice notes, WebRTC calls, channels, and Firebase cloud backup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

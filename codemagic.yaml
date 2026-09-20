@@ -1,0 +1,33 @@
+workflows:
+  android-debug:
+    name: GlobalStream Android Debug Build
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      groups:
+        # Create this group in Codemagic's UI (Teams > Environment variables)
+        # and add GEMINI_API_KEY there if you don't want it committed in .env
+        - globalstream_secrets
+      vars:
+        PACKAGE_NAME: "com.aistudio.chatmessenger.xrtqpa"
+      java: 17
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Make gradlew executable
+        script: |
+          chmod +x gradlew
+      - name: Build debug APK
+        script: |
+          ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
+      - app/build/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
